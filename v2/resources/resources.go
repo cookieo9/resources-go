@@ -1,7 +1,6 @@
 package resources
 
 import (
-	"errors"
 	"io"
 	"os"
 )
@@ -62,6 +61,3 @@ type Searcher interface {
 type Lister interface {
 	List() []Resource
 }
-
-// Error returned if a desired resource doesn't exist.
-var ErrNotFound = errors.New("bundle: File not Found.")
