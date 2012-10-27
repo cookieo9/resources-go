@@ -82,6 +82,9 @@ func (zb *zipBundle) List() (list []Resource) {
 // Opens a zipfile on disk as a bundle. You must call
 // Close() to release the open file handle.
 //
+// Zip files opened as bundles implement the Bundle,
+// Searcher, and Lister interfaces.
+//
 // If the file is in a known executable format,
 // it is searched for an embedded zip file.
 func OpenZip(path string) (Bundle, error) {
@@ -104,6 +107,9 @@ func OpenZip(path string) (Bundle, error) {
 // Opens a zipfile specified by the given ReaderAt and size.
 // Close() is a no-op on the returned structure, ie: you must
 // close the reader's resource yourself if necessary.
+//
+// Zip files opened as bundles implement the Bundle,
+// Searcher, and Lister interfaces.
 //
 // If the reader accesses data for a known executable format,
 // it will be searched for an embedded zip file.
