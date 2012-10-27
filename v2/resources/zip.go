@@ -19,14 +19,18 @@ func (zr *zipResource) Stat() (os.FileInfo, error) {
 	return zr.FileInfo(), nil
 }
 
-type ZipBundle struct {
+func (zr *zipResource) String() string {
+	return zr.Path()
+}
+
+type zipBundle struct {
 	file *os.File
 	rdr  *zip.Reader
 }
 
 // Closes the ZipBundle's associated file, if
 // created by OpenZip, otherwise a no-op
-func (zb *ZipBundle) Close() error {
+func (zb *zipBundle) Close() error {
 	if zb.file != nil {
 		return zb.file.Close()
 	}
@@ -35,7 +39,7 @@ func (zb *ZipBundle) Close() error {
 
 // Open the resource at path in the ZipBundle for reading.
 // Returns ErrNotFound if no file exists with that path.
-func (zb *ZipBundle) Open(path string) (io.ReadCloser, error) {
+func (zb *zipBundle) Open(path string) (io.ReadCloser, error) {
 	resource, err := zb.Find(path)
 	if err != nil {
 		return nil, err
@@ -45,7 +49,7 @@ func (zb *ZipBundle) Open(path string) (io.ReadCloser, error) {
 
 // Finds the resource at path in the ZipBundle.
 // Returns ErrNotFound if no file exists with that path.
-func (zb *ZipBundle) Find(path string) (Resource, error) {
+func (zb *zipBundle) Find(path string) (Resource, error) {
 	for _, file := range zb.rdr.File {
 		if file.Name == path {
 			return &zipResource{file}, nil
@@ -56,7 +60,7 @@ func (zb *ZipBundle) Find(path string) (Resource, error) {
 
 // Finds all matching resources in the ZipBundle.
 // Returns ErrNotFound if no files match the pattern.
-func (zb *ZipBundle) Glob(pattern string) (resources []Resource, err error) {
+func (zb *zipBundle) Glob(pattern string) (resources []Resource, err error) {
 	for _, file := range zb.rdr.File {
 		if match, err := path.Match(pattern, file.Name); match {
 			resources = append(resources, &zipResource{file})
@@ -68,7 +72,7 @@ func (zb *ZipBundle) Glob(pattern string) (resources []Resource, err error) {
 }
 
 // Lists all resources in the ZipBundle
-func (zb *ZipBundle) List() (list []Resource) {
+func (zb *zipBundle) List() (list []Resource) {
 	for _, file := range zb.rdr.File {
 		list = append(list, &zipResource{file})
 	}
@@ -80,7 +84,7 @@ func (zb *ZipBundle) List() (list []Resource) {
 //
 // If the file is in a known executable format,
 // it is searched for an embedded zip file.
-func OpenZip(path string) (*ZipBundle, error) {
+func OpenZip(path string) (Bundle, error) {
 	file, err := os.Open(path)
 	if err != nil {
 		return nil, err
@@ -89,12 +93,12 @@ func OpenZip(path string) (*ZipBundle, error) {
 	if err != nil {
 		return nil, err
 	}
-	zipBundle, err := OpenZipReader(file, finfo.Size())
+	zb, err := OpenZipReader(file, finfo.Size())
 	if err != nil {
 		return nil, err
 	}
-	zipBundle.file = file
-	return zipBundle, nil
+	zb.(*zipBundle).file = file
+	return zb, nil
 }
 
 // Opens a zipfile specified by the given ReaderAt and size.
@@ -103,7 +107,7 @@ func OpenZip(path string) (*ZipBundle, error) {
 //
 // If the reader accesses data for a known executable format,
 // it will be searched for an embedded zip file.
-func OpenZipReader(rda io.ReaderAt, size int64) (*ZipBundle, error) {
+func OpenZipReader(rda io.ReaderAt, size int64) (Bundle, error) {
 	rdr, err := zip.NewReader(rda, size)
 	if err != nil {
 		rdr2, err2 := zipExeReader(rda, size)
@@ -112,11 +116,5 @@ func OpenZipReader(rda io.ReaderAt, size int64) (*ZipBundle, error) {
 		}
 		rdr = rdr2
 	}
-	return &ZipBundle{rdr: rdr}, nil
+	return &zipBundle{rdr: rdr}, nil
 }
-
-var (
-	_ZipBundle_Bundle           Bundle   = &ZipBundle{}
-	_ZipBundle_SearchableBundle Searcher = &ZipBundle{}
-	_ZipBundle_ListableBundle   Lister   = &ZipBundle{}
-)
