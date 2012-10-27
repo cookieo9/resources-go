@@ -55,7 +55,7 @@ func (zb *zipBundle) Find(path string) (Resource, error) {
 			return &zipResource{file}, nil
 		}
 	}
-	return nil, ErrNotFound
+	return nil, &ErrNotFound{path}
 }
 
 // Finds all matching resources in the ZipBundle.
