@@ -28,11 +28,11 @@ func (bs BundleSequence) Open(path string) (io.ReadCloser, error) {
 		reader, err := bundle.Open(path)
 		if err == nil {
 			return reader, nil
-		} else if err != ErrNotFound {
+		} else if !IsNotFound(err) {
 			return nil, err
 		}
 	}
-	return nil, ErrNotFound
+	return nil, &ErrNotFound{path}
 }
 
 // Find finds the first resource matching path in the sub-bundles.
@@ -49,12 +49,12 @@ func (bs BundleSequence) Find(path string) (Resource, error) {
 			resource, err := searchable.Find(path)
 			if err == nil {
 				return resource, nil
-			} else if err != ErrNotFound {
+			} else if IsNotFound(err) {
 				return nil, err
 			}
 		}
 	}
-	return nil, ErrNotFound
+	return nil, &ErrNotFound{path}
 }
 
 // merge_resources merges two lists of resources and returns
@@ -91,7 +91,7 @@ func (bs BundleSequence) Glob(pattern string) (matches []Resource, err error) {
 			resources, err := searchable.Glob(pattern)
 			if err == nil {
 				matches = merge_resources(matches, resources)
-			} else if err != ErrNotFound {
+			} else if !IsNotFound(err) {
 				return nil, err
 			}
 		}
@@ -114,17 +114,13 @@ func (bs BundleSequence) List() (resources []Resource) {
 	return
 }
 
-var (
-	_BundleSequence_Bundle           Bundle   = BundleSequence{}
-	_BundleSequence_SearchableBundle Searcher = BundleSequence{}
-	_BundleSequence_ListableBundle   Lister   = BundleSequence{}
-)
-
 // DefaultBundle represents a default search path of:
 //  - The Executable treated as a ZipBundle
 var DefaultBundle BundleSequence
 
 func init() {
+	DefaultBundle = append(DefaultBundle, OpenFS("."))
+	DefaultBundle = append(DefaultBundle, OpenAutoBundle(OpenCurrentPackage))
 	if exe_path, err := ExecutablePath(); err == nil {
 		if exe, err := OpenZip(exe_path); err == nil {
 			DefaultBundle = append(DefaultBundle, exe)
