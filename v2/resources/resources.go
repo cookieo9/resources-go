@@ -52,7 +52,6 @@ type Searcher interface {
 
 	// Returns all Resources matching the
 	// given glob pattern.
-	// returns ErrNotFound if no file exists.
 	Glob(pattern string) ([]Resource, error)
 }
 

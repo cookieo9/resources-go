@@ -55,11 +55,10 @@ func (zb *zipBundle) Find(path string) (Resource, error) {
 			return &zipResource{file}, nil
 		}
 	}
-	return nil, &ErrNotFound{path}
+	return nil, ErrNotFound
 }
 
 // Finds all matching resources in the ZipBundle.
-// Returns ErrNotFound if no files match the pattern.
 func (zb *zipBundle) Glob(pattern string) (resources []Resource, err error) {
 	for _, file := range zb.rdr.File {
 		if match, err := path.Match(pattern, file.Name); match {

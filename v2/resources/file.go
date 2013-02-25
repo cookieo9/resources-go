@@ -71,7 +71,7 @@ func (fb *fsBundle) Find(path string) (Resource, error) {
 	f := fb.file(path)
 	if _, err := f.Stat(); err != nil {
 		if os.IsNotExist(err) {
-			return nil, &ErrNotFound{path}
+			return nil, ErrNotFound
 		}
 		return nil, err
 	}
@@ -89,6 +89,7 @@ func (fb *fsBundle) Glob(pattern string) ([]Resource, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	rsrcs := make([]Resource, len(matches))
 	for i := range rsrcs {
 		rel, err := filepath.Rel(fb.base, matches[i])

@@ -34,7 +34,7 @@ func (ab autoBundle) Find(path string) (Resource, error) {
 	if searcher, ok := bundle.(Searcher); ok {
 		return searcher.Find(path)
 	}
-	return nil, &ErrNotFound{path}
+	return nil, ErrNotFound
 }
 
 func (ab autoBundle) Glob(pattern string) ([]Resource, error) {

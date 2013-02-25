@@ -2,6 +2,7 @@ package resources
 
 import (
 	"io"
+	"path/filepath"
 )
 
 // BundleSequences are meta-bundles which contain a slice
@@ -28,11 +29,11 @@ func (bs BundleSequence) Open(path string) (io.ReadCloser, error) {
 		reader, err := bundle.Open(path)
 		if err == nil {
 			return reader, nil
-		} else if !IsNotFound(err) {
+		} else if err != ErrNotFound {
 			return nil, err
 		}
 	}
-	return nil, &ErrNotFound{path}
+	return nil, ErrNotFound
 }
 
 // Find finds the first resource matching path in the sub-bundles.
@@ -49,12 +50,12 @@ func (bs BundleSequence) Find(path string) (Resource, error) {
 			resource, err := searchable.Find(path)
 			if err == nil {
 				return resource, nil
-			} else if IsNotFound(err) {
+			} else if err != ErrNotFound {
 				return nil, err
 			}
 		}
 	}
-	return nil, &ErrNotFound{path}
+	return nil, ErrNotFound
 }
 
 // merge_resources merges two lists of resources and returns
@@ -91,7 +92,7 @@ func (bs BundleSequence) Glob(pattern string) (matches []Resource, err error) {
 			resources, err := searchable.Glob(pattern)
 			if err == nil {
 				matches = merge_resources(matches, resources)
-			} else if !IsNotFound(err) {
+			} else if err != ErrNotFound {
 				return nil, err
 			}
 		}
@@ -119,13 +120,18 @@ func (bs BundleSequence) List() (resources []Resource) {
 var DefaultBundle BundleSequence
 
 func init() {
-	DefaultBundle = append(DefaultBundle, OpenFS("."))
-	DefaultBundle = append(DefaultBundle, OpenAutoBundle(OpenCurrentPackage))
+	var cwd, cur_pkg, exe_dir, exe Bundle
+	cwd = OpenFS(".")
+	cur_pkg = OpenAutoBundle(OpenCurrentPackage)
+
 	if exe_path, err := ExecutablePath(); err == nil {
-		if exe, err := OpenZip(exe_path); err == nil {
+		exe_dir = OpenFS(filepath.Dir(exe_path))
+		if exe, err = OpenZip(exe_path); err == nil {
 			DefaultBundle = append(DefaultBundle, exe)
 		}
 	}
+
+	DefaultBundle = append(DefaultBundle, cwd, exe_dir, cur_pkg, exe)
 }
 
 // Open() is a shortcut for DefaultBundle.Open()
