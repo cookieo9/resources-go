@@ -55,7 +55,7 @@ type Searcher interface {
 	Glob(pattern string) ([]Resource, error)
 }
 
-// A Lister represents an object with a list of 
+// A Lister represents an object with a list of
 // resources that can be iterated over.
 type Lister interface {
 	List() []Resource
