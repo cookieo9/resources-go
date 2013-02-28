@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"encoding/base64"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"mime"
 	"net/http"
@@ -135,7 +136,7 @@ func TestWriteZip(t *T) {
 	if f, err := os.Create("testdata.zip"); err != nil {
 		t.Fatal(err)
 	} else {
-		if _, err := zip.WriteTo(f); err != nil {
+		if _, err := io.Copy(f, zip); err != nil {
 			t.Fatal(err)
 		}
 	}
