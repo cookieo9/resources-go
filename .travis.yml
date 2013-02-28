@@ -1,3 +1,7 @@
 language: go
 
-script: go test ./v1/resources ./v2/resources
+env:
+ - VERSION=v1
+ - VERSION=v2
+
+script: go test ./$VERSION/resources
