@@ -14,7 +14,7 @@ Version 1:
 
     go get github.com/cookieo9/resources-go/v1/resources
 
-Version 2 (unstable):
+Version 2:
 
     go get github.com/cookieo9/resources-go/v2/resources
     
