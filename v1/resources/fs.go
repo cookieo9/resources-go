@@ -50,7 +50,7 @@ type fsBundle struct {
 }
 
 // OpenFS opens a FSBundle with the given root location
-// in the filesystem. The path is expected to be in 
+// in the filesystem. The path is expected to be in
 // system native format.
 func OpenFS(root string) Bundle {
 	return &fsBundle{filepath.Clean(root)}
