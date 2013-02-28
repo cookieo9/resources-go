@@ -36,10 +36,10 @@ func (ab AutoBundle) Glob(path string) ([]Resource, error) {
 }
 
 // List generates a bundle, and calls List on it.
-func (ab AutoBundle) List() []Resource {
+func (ab AutoBundle) List() ([]Resource, error) {
 	b, e := ab()
 	if e != nil {
-		return nil
+		return nil, e
 	}
 	return b.List()
 }
@@ -105,7 +105,7 @@ func ExecutablePath() (string, error) {
 }
 
 // List runs DefaultBundle.List()
-func List() []Resource {
+func List() ([]Resource, error) {
 	return DefaultBundle.List()
 }
 
@@ -136,6 +136,6 @@ type NoListBundle struct {
 }
 
 // Always returns nil (AKA: an empty list of resources.)
-func (nlb NoListBundle) List() []Resource {
-	return nil
+func (nlb NoListBundle) List() ([]Resource, error) {
+	return nil, nil
 }

@@ -53,7 +53,7 @@ type Resource interface {
 type Bundle interface {
 	Get(string) (Resource, error)    // get a single file
 	Glob(string) ([]Resource, error) // find a set of files that match a pattern
-	List() []Resource                // list all *known* resources in a bundle
+	List() ([]Resource, error)       // list all *known* resources in a bundle
 }
 
 // A Bundle that can be closed after use will implement the
@@ -132,7 +132,7 @@ func (bs BundleSequence) Glob(pattern string) ([]Resource, error) {
 // List returns all the resources in all the sub-bundles. Be careful
 // if using this on DefaultBundle() since there may be a lot of files
 // in the search path.
-func (bs BundleSequence) List() []Resource {
+func (bs BundleSequence) List() ([]Resource, error) {
 	set := make(map[string]bool)
 	list := make([]Resource, 0, 32)
 
@@ -141,7 +141,12 @@ func (bs BundleSequence) List() []Resource {
 			continue
 		}
 
-		for _, res := range b.List() {
+		sublist, err := b.List()
+		if err != nil {
+			return nil, err
+		}
+
+		for _, res := range sublist {
 			p := res.Path()
 			if _, ok := set[p]; ok {
 				continue
@@ -151,5 +156,5 @@ func (bs BundleSequence) List() []Resource {
 		}
 	}
 
-	return list
+	return list, nil
 }

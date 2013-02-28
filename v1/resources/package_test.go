@@ -11,7 +11,11 @@ func TestPackageBundle(t *T) {
 	}
 
 	t.Log("CurrentPackage:", cp)
-	t.Log("cp.List():", cp.List())
+	if list, err := cp.List(); err != nil {
+		t.Error("cp.List():", err)
+	} else {
+		t.Log("cp.List():", list)
+	}
 	if fs, err := cp.Glob("*.go"); err != nil {
 		t.Fatal("Glob(*.go):", err)
 	} else {

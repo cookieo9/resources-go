@@ -11,7 +11,7 @@ import (
 // and is exported so that external code can
 // easily generate their own Bundles.
 type Lister interface {
-	List() []Resource
+	List() ([]Resource, error)
 }
 
 type listerBundle struct {
@@ -21,7 +21,12 @@ type listerBundle struct {
 func (lb *listerBundle) Get(resourcePath string) (Resource, error) {
 	resourcePath = path.Clean(resourcePath)
 
-	for _, item := range lb.List() {
+	list, err := lb.List()
+	if err != nil {
+		return nil, err
+	}
+
+	for _, item := range list {
 		if item.Path() == resourcePath {
 			return item, nil
 		}
@@ -33,7 +38,12 @@ func (lb *listerBundle) Get(resourcePath string) (Resource, error) {
 func (lb *listerBundle) Glob(pattern string) ([]Resource, error) {
 	var resources []Resource
 
-	for _, item := range lb.List() {
+	list, err := lb.List()
+	if err != nil {
+		return nil, err
+	}
+
+	for _, item := range list {
 		ok, err := path.Match(pattern, item.Path())
 		if err != nil {
 			return nil, &bundleError{"glob", pattern, err}
@@ -48,8 +58,8 @@ func (lb *listerBundle) Glob(pattern string) ([]Resource, error) {
 
 type sliceLister []Resource
 
-func (sl sliceLister) List() []Resource {
-	return ([]Resource)(sl)
+func (sl sliceLister) List() ([]Resource, error) {
+	return ([]Resource)(sl), nil
 }
 
 // OpenList takes a list of resources, and

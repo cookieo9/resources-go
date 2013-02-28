@@ -24,7 +24,11 @@ func TestSequence(t *T) {
 	bundle = append(bundle, DefaultBundle)
 	t.Log("Bundle:", bundle)
 
-	t.Log("List():", bundle.List())
+	if list, err := bundle.List(); err != nil {
+		t.Error("List():", err)
+	} else {
+		t.Log("List():", list)
+	}
 
 	files, err := bundle.Glob(pattern)
 	if err != nil {

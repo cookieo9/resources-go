@@ -94,7 +94,7 @@ func (fsb *fsBundle) Glob(pattern string) (files []Resource, err error) {
 // Lists every known resource in the Bundle. This is essentially
 // every non-directory file found by calling filepath.Walk() on
 // the FSBundle's root directory.
-func (fsb *fsBundle) List() []Resource {
+func (fsb *fsBundle) List() ([]Resource, error) {
 	var list []Resource
 	err := filepath.Walk(fsb.Root, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -108,9 +108,9 @@ func (fsb *fsBundle) List() []Resource {
 		return nil
 	})
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
-	return list
+	return list, nil
 }
 
 func fs_bundle_path(root string, path string) string {

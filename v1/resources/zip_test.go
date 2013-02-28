@@ -7,7 +7,11 @@ import (
 func test_zip(t *T, zb Bundle) {
 	pattern := "*_test.go"
 	t.Log("Testing:", zb)
-	t.Log("List():", zb.List())
+	if list, err := zb.List(); err != nil {
+		t.Error("List():", err)
+	} else {
+		t.Log("List():", list)
+	}
 
 	files, err := zb.Glob(pattern)
 	if err != nil {
