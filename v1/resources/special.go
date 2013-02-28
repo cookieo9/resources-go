@@ -1,11 +1,10 @@
 package resources
 
 import (
+	"bitbucket.org/kardianos/osext"
 	"fmt"
 	"go/build"
 	"io"
-	"os"
-	"os/exec"
 	"path/filepath"
 )
 
@@ -64,7 +63,7 @@ var (
 
 // DefaultBundle holds the bundle to use by package functions
 // resources.Get, resources.Glob, and resources.List.
-// 
+//
 // It implements the following search-path:
 //	- The current working directory
 //	- The directory containing the executable
@@ -100,14 +99,9 @@ func init() {
 // ExecutablePath returns a system-native path to the currently running
 // executable.
 //
-// If the value of os.Args[0] has been tampered with, this function may
-// give innacurate results.
+// It is implemented using the bitbucket.org/kardianos/osext package.
 func ExecutablePath() (string, error) {
-	exepath, err := exec.LookPath(os.Args[0])
-	if err != nil {
-		return "", err
-	}
-	return filepath.Abs(filepath.Clean(exepath))
+	return osext.Executable()
 }
 
 // List runs DefaultBundle.List()
