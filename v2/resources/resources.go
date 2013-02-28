@@ -58,5 +58,5 @@ type Searcher interface {
 // A Lister represents an object with a list of
 // resources that can be iterated over.
 type Lister interface {
-	List() []Resource
+	List() ([]Resource, error)
 }

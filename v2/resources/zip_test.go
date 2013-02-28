@@ -104,7 +104,11 @@ func TestZip(t *T) {
 	t.Log()
 	t.Log("--- Zip Listing ---")
 	lister := zb.(Lister)
-	t.Log("Resources:", lister.List())
+	if list, err := lister.List(); err != nil {
+		t.Error(err)
+	} else {
+		t.Log("Resources:", list)
+	}
 
 	searcher := zb.(Searcher)
 	t.Log()

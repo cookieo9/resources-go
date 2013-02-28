@@ -48,13 +48,13 @@ func (ab autoBundle) Glob(pattern string) ([]Resource, error) {
 	return nil, nil
 }
 
-func (ab autoBundle) List() []Resource {
+func (ab autoBundle) List() ([]Resource, error) {
 	bundle, err := ab()
 	if err != nil {
-		return nil
+		return nil, err
 	}
 	if lister, ok := bundle.(Lister); ok {
 		return lister.List()
 	}
-	return nil
+	return nil, nil
 }

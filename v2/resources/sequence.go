@@ -103,13 +103,17 @@ func (bs BundleSequence) Glob(pattern string) (matches []Resource, err error) {
 // List provides a slice containing all resources from all the sub-bundles.
 // Should multiple bundles contain a resource at the same path, only the
 // first resource (from the first sub-bundle) will be present in the list.
-func (bs BundleSequence) List() (resources []Resource) {
+func (bs BundleSequence) List() (resources []Resource, err error) {
 	for _, bundle := range bs {
 		if bundle == nil {
 			continue
 		}
 		if listable, ok := bundle.(Lister); ok {
-			resources = merge_resources(resources, listable.List())
+			list, err := listable.List()
+			if err != nil {
+				return nil, err
+			}
+			resources = merge_resources(resources, list)
 		}
 	}
 	return
@@ -150,6 +154,6 @@ func Glob(pattern string) ([]Resource, error) {
 }
 
 // List() is a shortcut for DefaultBundle.List()
-func List() []Resource {
+func List() ([]Resource, error) {
 	return DefaultBundle.List()
 }

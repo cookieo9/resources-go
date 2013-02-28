@@ -67,9 +67,9 @@ type packageBundle struct {
 	*fsBundle
 }
 
-func (pb *packageBundle) List() []Resource {
+func (pb *packageBundle) List() ([]Resource, error) {
 	var list []Resource
-	filepath.Walk(pb.base, func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk(pb.base, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
@@ -81,5 +81,5 @@ func (pb *packageBundle) List() []Resource {
 		}
 		return nil
 	})
-	return list
+	return list, err
 }

@@ -71,7 +71,7 @@ func (zb *zipBundle) Glob(pattern string) (resources []Resource, err error) {
 }
 
 // Lists all resources in the ZipBundle
-func (zb *zipBundle) List() (list []Resource) {
+func (zb *zipBundle) List() (list []Resource, err error) {
 	for _, file := range zb.rdr.File {
 		list = append(list, &zipResource{file})
 	}
