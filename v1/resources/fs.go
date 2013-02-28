@@ -96,7 +96,7 @@ func (fsb *fsBundle) Glob(pattern string) (files []Resource, err error) {
 // the FSBundle's root directory.
 func (fsb *fsBundle) List() []Resource {
 	var list []Resource
-	filepath.Walk(fsb.Root, func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk(fsb.Root, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return nil
 		}
@@ -107,6 +107,9 @@ func (fsb *fsBundle) List() []Resource {
 		}
 		return nil
 	})
+	if err != nil {
+		panic(err)
+	}
 	return list
 }
 
