@@ -4,6 +4,8 @@ import (
 	"archive/zip"
 	"io"
 	"os"
+
+	"github.com/daaku/go.zipexe"
 )
 
 type zipResource struct {
@@ -53,15 +55,9 @@ func (zrb *zipBundle) String() string {
 // OpenZipReader opens a bundle from an open io.ReaderAt. The name parameter
 // is simply a symbolic name for debug purposes.
 func OpenZipReader(rda io.ReaderAt, size int64, name string) (Bundle, error) {
-	var rdr *zip.Reader
-
-	rdr, err := zip.NewReader(rda, size)
+	rdr, err := zipexe.NewReader(rda, size)
 	if err != nil {
-		rdr2, err2 := zipExeReader(rda, size)
-		if err2 != nil {
-			return nil, &bundleError{"zip", name, err}
-		}
-		rdr = rdr2
+		return nil, &bundleError{"zip", name, err}
 	}
 
 	var files []Resource
