@@ -5,6 +5,8 @@ import (
 	"io"
 	"os"
 	"path"
+
+	"github.com/daaku/go.zipexe"
 )
 
 type zipResource struct {
@@ -113,13 +115,9 @@ func OpenZip(path string) (Bundle, error) {
 // If the reader accesses data for a known executable format,
 // it will be searched for an embedded zip file.
 func OpenZipReader(rda io.ReaderAt, size int64) (Bundle, error) {
-	rdr, err := zip.NewReader(rda, size)
+	rdr, err := zipexe.NewReader(rda, size)
 	if err != nil {
-		rdr2, err2 := zipExeReader(rda, size)
-		if err2 != nil {
-			return nil, err
-		}
-		rdr = rdr2
+		return nil, err
 	}
 	return &zipBundle{rdr: rdr}, nil
 }
