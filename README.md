@@ -11,6 +11,7 @@ This is the v1 version of the API, and should remain stable for the forseeable f
 as well as more recent stable versions can be found at: <https://github.com/cookieo9/resources-go>
 
 [![Build Status](https://travis-ci.org/cookieo9/resources-go.png?branch=v1)](https://travis-ci.org/cookieo9/resources-go)
+[![GoDoc](https://godoc.org/gopkg.in/cookieo9/v1/resources-go?status.png)](https://godoc.org/gopkg.in/cookieo9/v1/resources-go)
 
 Package Path
 ------------
