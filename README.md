@@ -7,11 +7,10 @@ Applications can use this package to load assets from zip-files (incuding a zip 
 the filesystem, or other sources through a single interface. Also allows for the building of a search path to access
 files sequentially through a set of application defined locations.
 
-This is the v2 version of the API, and should remain stable for the forseeable future. Access to the current version
-as well as more recent stable versions can be found at: <https://github.com/cookieo9/resources-go>
+This is the v2 version of the API. Access to the current version as well as more recent versions can be found at: <https://github.com/cookieo9/resources-go>
 
 [![Build Status](https://travis-ci.org/cookieo9/resources-go.png?branch=v2)](https://travis-ci.org/cookieo9/resources-go)
-[![GoDoc](https://godoc.org/gopkg.in/cookieo9/v2/resources-go?status.png)](https://godoc.org/gopkg.in/cookieo9/v1/resources-go)
+[![GoDoc](https://godoc.org/gopkg.in/cookieo9/v2/resources-go?status.png)](https://godoc.org/gopkg.in/cookieo9/v2/resources-go)
 
 Package Path
 ------------
