@@ -1,8 +1,9 @@
 package resources
 
 import (
-	"bitbucket.org/kardianos/osext"
 	"path/filepath"
+
+	"bitbucket.org/kardianos/osext"
 )
 
 // ExecutablePath returns a system-native path to the currently running

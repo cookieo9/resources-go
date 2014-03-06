@@ -120,7 +120,10 @@ func (bs BundleSequence) List() (resources []Resource, err error) {
 }
 
 // DefaultBundle represents a default search path of:
-//  - The Executable treated as a ZipBundle
+//  - The current working directory
+//  - The directory containing the executable
+//  - The package source-code directory
+//  - The executable treated as a ZipBundle
 var DefaultBundle BundleSequence
 
 func init() {

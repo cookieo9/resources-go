@@ -1,10 +1,11 @@
 package http
 
 import (
-	"github.com/cookieo9/resources-go/v2/resources"
 	"io"
 	"net/http"
 	"net/url"
+
+	"gopkg.in/cookieo9/v2/resources-go"
 )
 
 type HttpBundle struct {
