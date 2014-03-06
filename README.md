@@ -12,14 +12,12 @@ as well as more recent stable versions can be found at: <https://github.com/cook
 
 [![Build Status](https://travis-ci.org/cookieo9/resources-go.png?branch=v1)](https://travis-ci.org/cookieo9/resources-go)
 
-Installation / Use
-------------------
+Package Path
+------------
 
-Install:
-	go get gopkg.in/cookieo9/v1/resources-go
+This package is go-gettable with the path:
 
-Use:
-	import "gopkg.in/cookieo9/v1/resources-go"
+	gopkg.in/cookieo9/v1/resources-go
     
 Documentation
 -------------
