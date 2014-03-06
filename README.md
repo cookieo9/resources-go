@@ -7,8 +7,7 @@ Applications can use this package to load assets from zip-files (incuding a zip 
 the filesystem, or other sources through a single interface. Also allows for the building of a search path to access
 files sequentially through a set of application defined locations.
 
-This is the development version of the API. The may change at any time, if you want stability use one of the stable
-versions listed below. They are also stored in branches of the git repository.
+This is the development version of the API. It may change at any time, if you want stability use one of the versions listed below. They are also stored in branches of the git repository.
 
 [![Build Status](https://travis-ci.org/cookieo9/resources-go.png?branch=master)](https://travis-ci.org/cookieo9/resources-go)
 
