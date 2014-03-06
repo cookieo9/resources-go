@@ -4,3 +4,7 @@ go:
  - 1.0
  - 1.1
  - 1.2
+
+install: go get -d -v && go test -i -v
+
+test: go test -v
