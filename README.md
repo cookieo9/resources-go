@@ -7,9 +7,11 @@ Applications can use this package to load assets from zip-files (incuding a zip 
 the filesystem, or other sources through a single interface. Also allows for the building of a search path to access
 files sequentially through a set of application defined locations.
 
-This is the development version of the API. It may change at any time, if you want stability use one of the versions listed below. They are also stored in branches of the git repository.
+This is the development version of the API. It may change at any time, if you want stability use one of the versions 
+listed below. They are also stored in branches of the git repository.
 
-[![Build Status](https://travis-ci.org/cookieo9/resources-go.png?branch=master)](https://travis-ci.org/cookieo9/resources-go)
+[![Build Status](https://travis-ci.org/cookieo9/resources-go.png?branch=dev-gopkg.in)](https://travis-ci.org/cookieo9/resources-go)
+[![GoDoc](https://godoc.org/github.com/cookieo9/resources-go?status.png)](https://godoc.org/github.com/cookieo9/resources-go)
 
 Package Path
 ------------
@@ -21,8 +23,19 @@ This package is go-gettable with the path:
 Previous Versions
 -----------------
 
- - v1: gopkg.in/cookieo9/v1/resources-go
- - v2: gopkg.in/cookieo9/v2/resources-go
+ - [v1](https://github.com/cookieo9/resources-go/tree/v1):
+       `gopkg.in/cookieo9/v1/resources-go`
+       [![Build Status](https://travis-ci.org/cookieo9/resources-go.png?branch=v1)](https://travis-ci.org/cookieo9/resources-go)
+       [![GoDoc](https://godoc.org/gopkg.in/cookieo9/v1/resources-go?status.png)](https://godoc.org/gopkg.in/cookieo9/v1/resources-go)
+
+ - [v2](https://github.com/cookieo9/resources-go/tree/v2):
+       `gopkg.in/cookieo9/v2/resources-go`
+       [![Build Status](https://travis-ci.org/cookieo9/resources-go.png?branch=v2)](https://travis-ci.org/cookieo9/resources-go)
+       [![GoDoc](https://godoc.org/gopkg.in/cookieo9/v2/resources-go?status.png)](https://godoc.org/gopkg.in/cookieo9/v2/resources-go)
+
+To migrate code that used v1 (or v2) of the API, change the import path: `github.com/cookieo9/resources-go/v1/resources` to 
+`gopkg.in/cookieo9/v1/resources-go`. All the code will still be under the same package name, so your code should work
+without any further modification.
     
 Documentation
 -------------
