@@ -2,5 +2,4 @@ language: go
  
 install:
  - hg clone https://bitbucket.org/kardianos/osext $HOME/gopath/src/bitbucket.org/kardianos/osext
-
-script: go test -v ./...
+ - go get bitbucket.org/kardianos/osext
