@@ -10,7 +10,7 @@ files sequentially through a set of application defined locations.
 This is the development version of the API. It may change at any time, if you want stability use one of the versions 
 listed below. They are also stored in branches of the git repository.
 
-[![Build Status](https://travis-ci.org/cookieo9/resources-go.png?branch=dev-gopkg.in)](https://travis-ci.org/cookieo9/resources-go)
+[![Build Status](https://travis-ci.org/cookieo9/resources-go.svg)](https://travis-ci.org/cookieo9/resources-go)
 [![GoDoc](https://godoc.org/github.com/cookieo9/resources-go?status.png)](https://godoc.org/github.com/cookieo9/resources-go)
 
 Package Path
@@ -25,12 +25,12 @@ Previous Versions
 
  - [v1](https://github.com/cookieo9/resources-go/tree/v1):
        `gopkg.in/cookieo9/resources-go.v1`
-       [![Build Status](https://travis-ci.org/cookieo9/resources-go.png?branch=v1)](https://travis-ci.org/cookieo9/resources-go)
+       [![Build Status](https://travis-ci.org/cookieo9/resources-go.svg?branch=v1)](https://travis-ci.org/cookieo9/resources-go)
        [![GoDoc](https://godoc.org/gopkg.in/cookieo9/v1/resources-go?status.png)](https://godoc.org/gopkg.in/cookieo9/resources-go.v1)
 
  - [v2](https://github.com/cookieo9/resources-go/tree/v2):
        `gopkg.in/cookieo9/resources-go.v2`
-       [![Build Status](https://travis-ci.org/cookieo9/resources-go.png?branch=v2)](https://travis-ci.org/cookieo9/resources-go)
+       [![Build Status](https://travis-ci.org/cookieo9/resources-go.svg?branch=v2)](https://travis-ci.org/cookieo9/resources-go)
        [![GoDoc](https://godoc.org/gopkg.in/cookieo9/v2/resources-go?status.png)](https://godoc.org/gopkg.in/cookieo9/resources-go.v2)
 
 To migrate code that used v1 (or v2) of the API, change the import path: `github.com/cookieo9/resources-go/v1/resources` to 
