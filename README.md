@@ -10,7 +10,7 @@ files sequentially through a set of application defined locations.
 This is the v1 version of the API, and should remain stable for the forseeable future. Access to the current version
 as well as more recent stable versions can be found at: <https://github.com/cookieo9/resources-go>
 
-[![Build Status](https://travis-ci.org/cookieo9/resources-go.png?branch=v1)](https://travis-ci.org/cookieo9/resources-go)
+[![Build Status](https://travis-ci.org/cookieo9/resources-go.svg?branch=v1)](https://travis-ci.org/cookieo9/resources-go)
 [![GoDoc](https://godoc.org/gopkg.in/cookieo9/resources-go.v1?status.png)](https://godoc.org/gopkg.in/cookieo9/resources-go.v1)
 
 Package Path
