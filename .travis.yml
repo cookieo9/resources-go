@@ -5,6 +5,6 @@ go:
  - 1.1
  - 1.2
 
-install: go get -d -v && go test -i -v
-
-script: go test -v
+install:
+ - hg clone https://bitbucket.org/kardianos/osext $HOME/gopath/src/bitbucket.org/kardianos/osext
+ - go get bitbucket.org/kardianos/osext
