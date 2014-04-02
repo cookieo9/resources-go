@@ -12,12 +12,16 @@ This is the v2 version of the API. Access to the current version as well as more
 [![Build Status](https://travis-ci.org/cookieo9/resources-go.svg?branch=v2)](https://travis-ci.org/cookieo9/resources-go)
 [![GoDoc](https://godoc.org/gopkg.in/cookieo9/resources-go.v2?status.png)](https://godoc.org/gopkg.in/cookieo9/resources-go.v2)
 
-Package Path
-------------
+Package Path and Name
+---------------------
 
 This package is go-gettable with the path:
 
 	gopkg.in/cookieo9/resources-go.v2
+	
+The name of the package is `resources`. 
+
+Code that used the old import path `github.com/cookieo9/resources-go/v2/resources` (before the switch to using branches) can simply use the new path while leaving all other code unchanged.
     
 Documentation
 -------------
