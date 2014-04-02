@@ -13,12 +13,16 @@ as well as more recent stable versions can be found at: <https://github.com/cook
 [![Build Status](https://travis-ci.org/cookieo9/resources-go.svg?branch=v1)](https://travis-ci.org/cookieo9/resources-go)
 [![GoDoc](https://godoc.org/gopkg.in/cookieo9/resources-go.v1?status.png)](https://godoc.org/gopkg.in/cookieo9/resources-go.v1)
 
-Package Path
-------------
+Package Path and Name
+---------------------
 
 This package is go-gettable with the path:
 
 	gopkg.in/cookieo9/resources-go.v1
+	
+The name of the package is `resources`. 
+
+Code that used the old import path `github.com/cookieo9/resources-go/v1/resources` (before the switch to using branches) can simply use the new path while leaving all other code unchanged.
     
 Documentation
 -------------
