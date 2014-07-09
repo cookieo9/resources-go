@@ -12,6 +12,7 @@ as well as more recent stable versions can be found at: <https://github.com/cook
 
 [![Build Status](https://travis-ci.org/cookieo9/resources-go.svg?branch=v1)](https://travis-ci.org/cookieo9/resources-go)
 [![GoDoc](https://godoc.org/gopkg.in/cookieo9/resources-go.v1?status.png)](https://godoc.org/gopkg.in/cookieo9/resources-go.v1)
+[![Coverage](http://gocover.io/_badge/gopkg.in/cookieo9/resources-go.v1)](http://gocover.io/gopkg.in/cookieo9/resources-go.v1)
 
 Package Path and Name
 ---------------------
