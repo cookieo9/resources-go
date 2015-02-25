@@ -1,11 +1,12 @@
 package resources
 
 import (
-	"bitbucket.org/kardianos/osext"
 	"fmt"
 	"go/build"
 	"io"
 	"path/filepath"
+
+	"github.com/kardianos/osext"
 )
 
 // An AutoBundle is a wrapper around a niladic
