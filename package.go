@@ -5,30 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
-	"strings"
 )
-
-// Check a package to see if it's a valid place to look for resources
-// Anywhere in GOROOT, and in the resources package are not valid
-// locations
-func checkPackage(pkg *build.Package) bool {
-	if strings.Index(pkg.Dir, runtime.GOROOT()) != -1 {
-		return false
-	}
-
-	var thispkg *build.Package
-	_, sfile, _, _ := runtime.Caller(0)
-	if p, err := build.ImportDir(filepath.Dir(sfile), build.FindOnly); err != nil {
-		panic(err)
-	} else {
-		thispkg = p
-	}
-
-	if pkg.Dir == thispkg.Dir {
-		return false
-	}
-	return true
-}
 
 // Opens the source directory of the current package as a Bundle.
 // The current package is the package of the code calling
@@ -36,7 +13,7 @@ func checkPackage(pkg *build.Package) bool {
 func OpenCurrentPackage() (Bundle, error) {
 	_, sfile, _, _ := runtime.Caller(1)
 	if p, err := build.ImportDir(filepath.Dir(sfile), build.FindOnly); err == nil {
-			return &packageBundle{OpenFS(p.Dir).(*fsBundle)}, nil
+		return &packageBundle{OpenFS(p.Dir).(*fsBundle)}, nil
 	} else {
 		return nil, err
 	}
