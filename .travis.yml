@@ -7,5 +7,5 @@ go:
  - tip
  
 install:
- - hg clone https://bitbucket.org/kardianos/osext $HOME/gopath/src/bitbucket.org/kardianos/osext
+ - hg clone https://github.com/kardianos/osext $HOME/gopath/src/github.com/kardianos/osext
  - go get -v ./...
