@@ -9,7 +9,7 @@ files sequentially through a set of application defined locations.
 
 This is the v2 version of the API. Access to the current version as well as more recent versions can be found at: <https://github.com/cookieo9/resources-go>
 
-[![Build Status](https://travis-ci.org/cookieo9/resources-go.svg?branch=v2)](https://travis-ci.org/cookieo9/resources-go)
+[![Build Status](https://travis-ci.org/cookieo9/resources-go.svg?branch=v2.1)](https://travis-ci.org/cookieo9/resources-go)
 [![GoDoc](https://godoc.org/gopkg.in/cookieo9/resources-go.v2?status.png)](https://godoc.org/gopkg.in/cookieo9/resources-go.v2)
 [![Coverage](http://gocover.io/_badge/gopkg.in/cookieo9/resources-go.v2)](http://gocover.io/gopkg.in/cookieo9/resources-go.v2)
 
