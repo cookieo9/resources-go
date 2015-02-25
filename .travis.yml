@@ -6,6 +6,6 @@ go:
  - 1.2
  - tip
  
-install:
+#install:
 # - hg clone https://github.com/kardianos/osext $HOME/gopath/src/github.com/kardianos/osext
- - go get -v ./...
+# - go get -v ./...
