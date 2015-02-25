@@ -4,7 +4,9 @@ go:
  - 1.0
  - 1.1
  - 1.2
+ - 1.3
+ - 1.4
 
 install:
- - hg clone https://bitbucket.org/kardianos/osext $HOME/gopath/src/bitbucket.org/kardianos/osext
+ - git clone https://github.com/kardianos/osext $HOME/gopath/src/github.com/kardianos/osext
  - go get -v ./...

@@ -3,7 +3,7 @@ package resources
 import (
 	"path/filepath"
 
-	"bitbucket.org/kardianos/osext"
+	"github.com/kardianos/osext"
 )
 
 // ExecutablePath returns a system-native path to the currently running
@@ -12,7 +12,7 @@ import (
 // NOTE: this function was intended to dissapear when it's functionality
 // would be handled by the stdlib (go issue 4057). Since that is less
 // likely to happen, I will probably leave this here leaving the API
-// alone. It is supported via the "bitbucket.org/kardianos/osext" package.
+// alone. It is supported via the "github.com/kardianos/osext" package.
 func ExecutablePath() (string, error) {
 	return osext.Executable()
 }
