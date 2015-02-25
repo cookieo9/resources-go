@@ -3,7 +3,7 @@ package resources
 import (
 	"path/filepath"
 
-	"bitbucket.org/kardianos/osext"
+	"github.com/kardianos/osext"
 )
 
 // ExecutablePath returns a system-native path to the currently running
