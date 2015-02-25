@@ -37,8 +37,10 @@ func OpenCurrentPackage() (Bundle, error) {
 	_, sfile, _, _ := runtime.Caller(1)
 	if p, err := build.ImportDir(filepath.Dir(sfile), build.FindOnly); err == nil {
 			return &packageBundle{OpenFS(p.Dir).(*fsBundle)}, nil
+	} else {
+		return nil, err
 	}
-	return nil, err
+	panic("unreachable")
 }
 
 // OpenPackagePath returns a Bundle which accesses files
