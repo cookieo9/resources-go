@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"log"
 )
 
 // Check a package to see if it's a valid place to look for resources
@@ -38,6 +39,7 @@ func OpenCurrentPackage() (Bundle, error) {
 	// this package
 	for i := 1; ; i++ {
 		_, sfile, _, _ := runtime.Caller(i)
+		log.Println(sfile)
 		if p, err := build.ImportDir(filepath.Dir(sfile), build.FindOnly); err == nil {
 			if checkPackage(p) {
 				return &packageBundle{OpenFS(p.Dir).(*fsBundle)}, nil
