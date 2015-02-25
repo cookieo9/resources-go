@@ -9,6 +9,6 @@ Data can be loaded from a user-provided search path whose elements may be:
  - A zip file
  - A zip file embedded in the executable
 
-Source code can be found at https://github.com/cookieo9/resources-go
+Source code can be found at https://github.com/cookieo9/resources-go/tree/master
 */
 package resources
