@@ -69,7 +69,13 @@ type packageBundle struct {
 
 func (pb *packageBundle) List() ([]Resource, error) {
 	var list []Resource
-	err := filepath.Walk(pb.base, func(path string, info os.FileInfo, err error) error {
+	// if pb.base exist
+	_, err := os.Stat(pb.base)
+	if err != nil && os.IsNotExist(err) {
+		return list, nil
+	}
+	// walk to list
+	err = filepath.Walk(pb.base, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
