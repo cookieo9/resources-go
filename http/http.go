@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"gopkg.in/cookieo9/resources-go.v2"
+	"github.com/UrbanCompass/resources-go.v2"
 )
 
 type HttpBundle struct {

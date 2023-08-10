@@ -23,3 +23,7 @@ _testmain.go
 
 # Mac OS X invisible file
 .DS_Store
+
+# IntelliJ IDEA
+/resources-go.iml
+/.idea/
