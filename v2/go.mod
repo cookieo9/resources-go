@@ -1,4 +1,4 @@
-module github.com/UrbanCompass/resources-go
+module github.com/UrbanCompass/resources-go/v2
 
 go 1.20
 
