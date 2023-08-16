@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/UrbanCompass/resources-go"
+	"github.com/UrbanCompass/resources-go/v2"
 )
 
 type HttpBundle struct {
